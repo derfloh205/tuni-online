@@ -1,20 +1,31 @@
 <?php
 
-    $university = $_POST["TODO"];
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbName = "tunidb"; 
 
-    $lectures = mysql_query("SELECT * FROM `lecture`;");
-    $universityProducts = mysql_query("SELECT * FROM `universityproducts`;");
-    $rows = array();
+$db = mysqli_connect($servername, $username, $password, $dbName)
+or die('Error connecting to MySQL server.');
 
-    while($element = mysql_fetch_assoc($lectures))
-    {
-    	$rows[] = $element;
-    }
-    
-    while($element = mysql_fetch_assoc($universityproducts))
-    {
-    	$rows[] = $element;
-    }
+$university = $_POST["TODO"];
 
-    echo json_encode($rows);
+
+$query = "SELECT * FROM lecture";
+$lectures = mysqli_query($db, $query) or die('Error querying database 1.');
+$query = "SELECT * FROM universityproducts";
+$universityproducts = mysqli_query($db, $query) or die('Error querying database 1.');
+
+$rows = array();
+while($element = mysql_fetch_assoc($lectures))
+{
+	$rows[] = $element;
+}
+
+while($element = mysql_fetch_assoc($universityproducts))
+{
+	$rows[] = $element;
+}
+
+echo json_encode($rows);
 ?>

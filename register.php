@@ -1,14 +1,11 @@
 <?php
-
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
 $dbName = "tunidb"; 
 
-$db = mysql_connect($servername, $username, $password, $dbName)
+$db = mysqli_connect($servername, $username, $password, $dbName)
 or die('Error connecting to MySQL server.');
-
-$db = mysql_select_db($dbName);
 
 
 $matrNumber = $_POST["id"];
@@ -16,33 +13,35 @@ $name = $_POST["name"];
 $email = $_POST["email"];
 $password = $_POST["pw"];
 
-if(!$db) {
-
-	echo "Could not connect to database";
-
-} else {
 
 if($matrNumber && $name && $email && $password)
 {
-	$result = mysql_query("SELECT * FROM `student` WHERE studendID = $matrNumber;");
+	$matNr = (int)$matrNumber;
+	$query = "SELECT * FROM student WHERE studentID = '$matNr'";
+	$result = mysqli_query($db, $query) or die('Error querying database 1.');
 
-	if(!$result)
+	$numRows = mysqli_num_rows($result);
+
+	if($numRows == 0)
 	{	
-		mysql_query("INSERT INTO `student` (studentID, name, email, password) VALUES('$matrNumber', '$name', '$email', '$password');");
-		#mysql_close($db);
-		return true;
+		$query = "INSERT INTO student (studentID, name, email, password) VALUES('$matrNumber', '$name', '$email', '$password')";
+		$result = mysqli_query($db, $query) or die('Error querying database 2.');
+		mysqli_close($db);
+		echo true;
+		return;
 	}
 	else
 	{
-		#mysql_close($db);
-		return false;
+		mysqli_close($db);
+		echo false;
+		return;
 	}
 }
 else
 {
-	#mysql_close($db);
-	return false;
-}
+	mysqli_close($db);
+	echo false;
+	return;
 }
 
 
