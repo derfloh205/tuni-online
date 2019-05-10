@@ -8,6 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function saveSession(studentID) {
+    setCookie("studentID", studentID.toString(), 0);
+}
+
 function login() {
 
     // get student-id and pw from form
@@ -19,9 +30,11 @@ function login() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
             console.log("response: " + response);
-            if(response) {
+            if(response == 1) {
                 // success, redirect
-                //window.location.assign("universities.html");
+                window.location.assign("universities.html");
+                // on login success save "session"
+                saveSession(studentID);
                 console.log("response success");
             } else {
                 alert("Login Error");
@@ -46,8 +59,8 @@ function register() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
-            console.log("response: " + response);
-            if(response) {
+            console.log("response: " + response.toString());
+            if(response == "1") {
                 // success, redirect
                 //window.location.assign("universities.html");
                 console.log("response success");
