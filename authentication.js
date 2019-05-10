@@ -18,9 +18,11 @@ function login() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
+            console.log("response: " + response);
             if(response) {
                 // success, redirect
-                window.location.assign("universities.html");
+                //window.location.assign("universities.html");
+                console.log("response success");
             } else {
                 alert("Login Error");
                 // show login error
