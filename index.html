@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<script src="authentication.js"></script>
 <body>
 
   <div style="text-align: center">
@@ -9,19 +10,19 @@
 
       <form>
         Matriculation Number:<br>
-        <input type="text" name="matriculationNumber">
+        <input type="text" id="studentNumber" name="matriculationNumber">
         <br>
         Name:<br>
-        <input type="text" name="name">
+        <input type="text" id="studentName" name="name">
         <br>
         Email:<br>
-        <input type="email" name="email">
+        <input type="email" id="studentEmail" name="email">
         <br>
         Password:<br>
-        <input type="password" name="password">
+        <input type="password" id="studentPW" name="password">
         <br><br>
-        <button type="button" id="login" style="width: 70px;">Login</button>
-        <button type="button" id="register" style="width: 70px;">Register</button>
+        <button id="login" style="width: 70px;" type="button">Login</button>
+        <button id="register" style="width: 70px;" type="button">Register</button>
       </form>
 
 <p>If you want to login, just fill out the matriculation number and the password.</p>
