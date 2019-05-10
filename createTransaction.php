@@ -15,4 +15,6 @@
         echo $conn->query($sql)
     } 
     else {echo false; }
+
+    $conn->close();
 ?>

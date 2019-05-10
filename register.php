@@ -44,6 +44,6 @@ else
 	return;
 }
 
-
+$conn->close();
 
 ?>
