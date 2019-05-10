@@ -10,7 +10,7 @@
     $result = $conn->query($sql);
     if($result->num_rows == 0)
     {
-        echo false
+        echo false;
     }
     else
     {
