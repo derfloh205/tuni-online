@@ -1,13 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
     let studentID = getSession();
-    document.getElementById("loggedInAs").innerText = studentID.toString();
+
+    if(!studentID) {
+        window.location.assign("index.html");
+    } else {
+        document.getElementById("loggedInAs").innerText = "Logged in with studentID: " + studentID.toString();
+    }
 });
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
@@ -21,3 +26,14 @@ function getCookie(cname) {
 function getSession() {
     return parseInt(getCookie("studentID"));
 }
+
+
+function getUniversities() {
+    // ajax
+}
+
+function getStudentTransactions() {
+    let studentID = getSession();
+}
+
+

@@ -6,13 +6,17 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("register").addEventListener("click", function () {
         register();
     });
+
+    clearCookie("studentID");
 });
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+function setCookie(cname, cvalue) {
+    document.cookie = cname + "=" + cvalue + ";";
+}
+
+function clearCookie(cname) {
+    let cvalue = "";
+    document.cookie = cname + "=" + cvalue + ";";
 }
 
 function saveSession(studentID) {
@@ -20,7 +24,6 @@ function saveSession(studentID) {
 }
 
 function login() {
-
     // get student-id and pw from form
     let studentID = document.getElementById("studentNumber").value;
     let studentpw = document.getElementById("studentPW").value;
@@ -62,8 +65,8 @@ function register() {
             console.log("response: " + response.toString());
             if(response == "1") {
                 // success, redirect
-                //window.location.assign("universities.html");
-                console.log("response success");
+                saveSession(studentID);
+                window.location.assign("universities.html");
             } else {
                 alert("Registration Error");
                 // show register error
