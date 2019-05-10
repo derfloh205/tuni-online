@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     let studentID = getSession();
-
     if(!studentID) {
         window.location.assign("index.html");
+        return;
     } else {
         document.getElementById("loggedInAs").innerText = "Logged in with studentID: " + studentID.toString();
     }
+
+    getUniversities();
 });
 
 function getCookie(cname) {
@@ -29,7 +31,22 @@ function getSession() {
 
 
 function getUniversities() {
-    // ajax
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let response = this.response;
+            console.log("response: " + response);
+            if(response == 1) {
+                console.log("Universities fetched");
+            } else {
+                alert("University Fetch Error");
+                // show login error
+            }
+        }
+    };
+    xmlhttp.open("GET", "getUniversities.php", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send();
 }
 
 function getStudentTransactions() {
