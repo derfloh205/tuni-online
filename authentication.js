@@ -1,9 +1,11 @@
-document.getElementById("login").addEventListener("click", function () {
-    login();
-});
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("login").addEventListener("click", function () {
+        login();
+    });
 
-document.getElementById("register").addEventListener("click", function () {
-    register();
+    document.getElementById("register").addEventListener("click", function () {
+        register();
+    });
 });
 
 function login() {
