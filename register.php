@@ -1,5 +1,4 @@
 <?php
-
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
@@ -17,27 +16,32 @@ $password = $_POST["pw"];
 
 if($matrNumber && $name && $email && $password)
 {
-	#$result = mysqli_query("SELECT * FROM `student` WHERE studendID = $matrNumber;");
-	$query = "SELECT * FROM student WHERE studentID = '$matrNumber'";
+	$matNr = (int)$matrNumber;
+	$query = "SELECT * FROM student WHERE studentID = '$matNr'";
 	$result = mysqli_query($db, $query) or die('Error querying database 1.');
-	if($result == NULL)
+
+	$numRows = mysqli_num_rows($result);
+
+	if($numRows == 0)
 	{	
-		#mysqli_query("INSERT INTO `student` (studentID, name, email, password) VALUES('$matrNumber', '$name', '$email', '$password');");
 		$query = "INSERT INTO student (studentID, name, email, password) VALUES('$matrNumber', '$name', '$email', '$password')";
 		$result = mysqli_query($db, $query) or die('Error querying database 2.');
-		#mysql_close($db);
-		return true;
+		mysqli_close($db);
+		echo true;
+		return;
 	}
 	else
 	{
-		#mysql_close($db);
-		return false;
+		mysqli_close($db);
+		echo "false1";
+		return;
 	}
 }
 else
 {
-	#mysql_close($db);
-	return false;
+	mysqli_close($db);
+	echo "false2";
+	return;
 }
 
 
