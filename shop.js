@@ -7,50 +7,26 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("loggedInAs").innerText = "Logged in with studentID: " + studentID.toString();
     }
 
-    getUniversities();
+    getLectures();
 });
 
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
+function getLectures() {
+    let universityID = 0;
 
-function getSession() {
-    return parseInt(getCookie("studentID"));
-}
-
-
-function getUniversities() {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
             console.log("response: " + response);
             if(response == 1) {
-                console.log("Universities fetched");
+                console.log("Lectures fetched");
             } else {
-                alert("University Fetch Error");
+                alert("Lecture Fetch Error");
                 // show login error
             }
         }
     };
-    xmlhttp.open("GET", "getUniversities.php", true);
+    xmlhttp.open("GET", "getLectures.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send();
+    xmlhttp.send("id=" + universityID);
 }
-
-function getStudentTransactions() {
-    let studentID = getSession();
-}
-
-
