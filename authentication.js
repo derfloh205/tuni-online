@@ -20,14 +20,11 @@ function login() {
             let response = this.response;
             if(response) {
                 // success, redirect
-                window.open("universities.html","_self");
+                window.location.assign("universities.html");
             } else {
                 alert("Login Error");
                 // show login error
             }
-        } else {
-            alert("Connection Error");
-            // show connection error
         }
     };
     xmlhttp.open("POST", "login.php", true);
@@ -49,14 +46,11 @@ function register() {
             let response = this.response;
             if(response) {
                 // success, redirect
-                window.open("universities.html","_self");
+                window.location.assign("universities.html");
             } else {
                 alert("Registration Error");
                 // show register error
             }
-        } else {
-            alert("Connection Error");
-            // show connection error
         }
     };
     xmlhttp.open("POST", "register.php", true);
