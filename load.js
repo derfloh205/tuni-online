@@ -36,8 +36,9 @@ function getUniversities() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
             console.log("response: " + response);
-            if(response == 1) {
+            if(response) {
                 console.log("Universities fetched");
+                displayUniversities(JSON.parse(response));
             } else {
                 alert("University Fetch Error");
                 // show login error
@@ -47,6 +48,17 @@ function getUniversities() {
     xmlhttp.open("GET", "getUniversities.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send();
+}
+
+function displayUniversities(universities) {
+    let element = "";
+    for(let key in universities) {
+        let id = universities[key]["id"];
+        let name = universities[key]["name"];
+        console.log(id + " " + name);
+        element += "<li>"+id+" "+"name"+"</li>";
+    }
+        document.getElementById("universityList").innerHTML = element;
 }
 
 function getStudentTransactions() {
