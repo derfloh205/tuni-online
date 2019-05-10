@@ -16,4 +16,5 @@
         else { echo false; }
     } 
     else {echo false; }
+    $conn->close();
 ?>
