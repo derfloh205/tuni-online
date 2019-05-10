@@ -20,6 +20,5 @@
         }
         echo json_encode($rows);
     }
-    $result->close();
     $conn->close();
 ?>
