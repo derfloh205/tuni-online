@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 10. Mai 2019 um 11:34
--- Server-Version: 10.1.38-MariaDB
--- PHP-Version: 7.1.27
+-- Erstellungszeit: 10. Mai 2019 um 15:10
+-- Server-Version: 10.1.39-MariaDB
+-- PHP-Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,19 @@ CREATE TABLE `lecture` (
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `lecture`
+--
+
+INSERT INTO `lecture` (`ID`, `name`) VALUES
+(1, 'Structured Data Management'),
+(2, 'Applied Cryptographie'),
+(3, 'Modern Public Key Crypto'),
+(4, 'Web Technology'),
+(5, 'Analysis'),
+(6, 'Operating Systems'),
+(7, 'Software Paradigms');
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +57,14 @@ CREATE TABLE `lectureProducts` (
   `lectureID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `lectureProducts`
+--
+
+INSERT INTO `lectureProducts` (`ID`, `lectureID`, `productID`) VALUES
+(1, 5, 1),
+(2, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -57,6 +78,15 @@ CREATE TABLE `product` (
   `price` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `product`
+--
+
+INSERT INTO `product` (`ID`, `name`, `price`) VALUES
+(1, 'Analysis notes', '10'),
+(2, 'Operating systems solutions', '50'),
+(3, 'Zbook 15', '800');
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +99,18 @@ CREATE TABLE `student` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `student`
+--
+
+INSERT INTO `student` (`studentID`, `name`, `email`, `password`) VALUES
+(123, 'test user', 'test@user.at', '123'),
+(1311885, 'Tina Promitzer', 'tina@rotehaare.at', 'thisissafe'),
+(1330231, 'Anja Reibenbacher', 'anja@reibenbacher.at', 'pw123'),
+(1330656, 'Florian Paul Markus Dietrich', 'flo@gamer.at', '1234'),
+(1331106, 'Flexi Grass', 'flexi@flex.com', 'password'),
+(1430534, 'Simon Guggi', 'test@test.com', 'test123');
 
 -- --------------------------------------------------------
 
@@ -94,6 +136,18 @@ CREATE TABLE `university` (
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `university`
+--
+
+INSERT INTO `university` (`ID`, `name`) VALUES
+(1, 'TU Graz'),
+(2, 'TU Wien'),
+(3, 'KF'),
+(4, 'FH Johanneum'),
+(5, 'WU Wien'),
+(6, 'TU Klagenfurt');
+
 -- --------------------------------------------------------
 
 --
@@ -117,6 +171,13 @@ CREATE TABLE `universityProducts` (
   `uniID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `universityProducts`
+--
+
+INSERT INTO `universityProducts` (`ID`, `uniID`, `productID`) VALUES
+(1, 1, 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -178,19 +239,19 @@ ALTER TABLE `universityProducts`
 -- AUTO_INCREMENT für Tabelle `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `lectureProducts`
 --
 ALTER TABLE `lectureProducts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `transactions`
@@ -202,7 +263,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT für Tabelle `university`
 --
 ALTER TABLE `university`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `universityLectures`
@@ -214,7 +275,7 @@ ALTER TABLE `universityLectures`
 -- AUTO_INCREMENT für Tabelle `universityProducts`
 --
 ALTER TABLE `universityProducts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
