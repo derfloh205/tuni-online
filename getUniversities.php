@@ -6,7 +6,7 @@
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $db);
-    $sql = "SELECT name FROM universities";
+    $sql = "SELECT name FROM university";
     $result = $conn->query($sql);
     if($result->num_rows == 0)
     {
