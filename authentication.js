@@ -20,7 +20,7 @@ function login() {
             let response = this.response;
             if(response) {
                 // success, redirect
-                window.open("universities.html");
+                window.open("universities.html","_self");
             } else {
                 alert("Login Error");
                 // show login error
@@ -49,7 +49,7 @@ function register() {
             let response = this.response;
             if(response) {
                 // success, redirect
-                window.open("universities.html");
+                window.open("universities.html","_self");
             } else {
                 alert("Registration Error");
                 // show register error
