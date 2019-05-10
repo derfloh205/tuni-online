@@ -20,9 +20,6 @@ function login() {
             // show login error
         }
     };
-    xmlhttp.open("POST", "login.php?id=" + studentnumber + "?pw=" + studentpw, true);
-    xmlhttp.send();
-
     xmlhttp.open("POST", "login.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + studentID + "&pw=" + studentpw);
