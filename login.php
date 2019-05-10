@@ -1,6 +1,6 @@
 <?php
     if (array_key_exists('id', $_POST) && array_key_exists('pw', $_POST)) {
-        $id = $_POST['pw'];
+        $id = $_POST['id'];
         $pw = ($_POST['pw']);
 
         $servername = "localhost";
@@ -10,10 +10,10 @@
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
-        $sql = "SELECT " . $id . " FROM students WHERE password = '" . $pw . "'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) { return true; } 
-        else { return false; }
+        $sql = "SELECT * FROM student WHERE studentID='$id' AND password='$pw'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) != 0) { echo true; } 
+        else { echo false; }
     } 
-    else { return false; }
+    else {echo false; }
 ?>
