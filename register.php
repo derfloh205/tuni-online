@@ -33,14 +33,14 @@ if($matrNumber && $name && $email && $password)
 	else
 	{
 		mysqli_close($db);
-		echo "false1";
+		echo false;
 		return;
 	}
 }
 else
 {
 	mysqli_close($db);
-	echo "false2";
+	echo false;
 	return;
 }
 
