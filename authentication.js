@@ -15,9 +15,15 @@ function login() {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            window.open("universities.html");
+            let response = this.response;
+            if(response) {
+                // success, redirect
+                window.open("universities.html");
+            } else {
+                // show login error
+            }
         } else {
-            // show login error
+            // show connection error
         }
     };
     xmlhttp.open("POST", "login.php", true);
