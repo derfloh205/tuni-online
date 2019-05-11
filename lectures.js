@@ -46,7 +46,7 @@ function createTransaction(item) {
 
     xmlhttp.open("POST", "scripts/createTransaction.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send("studentID=" + getSession() + "?productID=" + item.id);
+    xmlhttp.send("studentID=" + getSession() + "&productID=" + item.id);
 }
 
 function displayLecturesAndProducts(lecturesAndProducts) {
@@ -115,7 +115,7 @@ function getProductsByLecture(item) {
                 document.getElementById("productsLectureListContainer").style.display = "";
                 document.getElementById("lectureProductHeadline").innerText = "Products from " + item.innerText;
             } else {
-                alert("Products by Lecture  Fetch Error");
+                alert("Products by Lecture Fetch Error");
                 // show login error
             }
         }

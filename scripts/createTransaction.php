@@ -8,10 +8,10 @@
         $password = "";
         $db = "tunidb";
 
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
         $sql = "insert into transactions (studentID, productID, date) values ('$student_id', '$product_id', now())";
-        $result = mysqli_query($conn, $sql);
         echo $conn->query($sql);
         $conn->close();
     } 
