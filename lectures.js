@@ -82,14 +82,20 @@ function getLecturesAndProducts() {
 
 function getProductsByLecture(item) {
     let xmlhttp = new XMLHttpRequest();
+    console.log(item);
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let parsedProducts = JSON.parse(this.response);
             if(parsedProducts) {
+                let productsLectureList = document.getElementById("productsLectureList");
+                let productList = "";
                 console.log("Products by Lecture fetched");
                 for(let index in parsedProducts) {
-                    console.log("product: " + parsedProducts[index].name);
+                    let currentProduct = parsedProducts[index];
+                    productList += "<li>"+currentProduct.name+" Price: "+currentProduct.price+"€</li>";
                 }
+                productsLectureList.innerHTML = productList;
+                document.getElementById("productsLectureListContainer").style.display = "";
             } else {
                 alert("Products by Lecture  Fetch Error");
                 // show login error
