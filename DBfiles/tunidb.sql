@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 10. Mai 2019 um 15:10
+-- Erstellungszeit: 11. Mai 2019 um 17:50
 -- Server-Version: 10.1.39-MariaDB
 -- PHP-Version: 7.3.5
 
@@ -105,6 +105,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studentID`, `name`, `email`, `password`) VALUES
+(45, 'test test', 'f@af.at', '123'),
 (123, 'test user', 'test@user.at', '123'),
 (1311885, 'Tina Promitzer', 'tina@rotehaare.at', 'thisissafe'),
 (1330231, 'Anja Reibenbacher', 'anja@reibenbacher.at', 'pw123'),
@@ -193,7 +194,9 @@ ALTER TABLE `lecture`
 -- Indizes für die Tabelle `lectureProducts`
 --
 ALTER TABLE `lectureProducts`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `lectureID` (`lectureID`),
+  ADD KEY `productID` (`productID`);
 
 --
 -- Indizes für die Tabelle `product`
@@ -211,7 +214,9 @@ ALTER TABLE `student`
 -- Indizes für die Tabelle `transactions`
 --
 ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `studentID` (`studentID`),
+  ADD KEY `productID` (`productID`);
 
 --
 -- Indizes für die Tabelle `university`
@@ -223,13 +228,17 @@ ALTER TABLE `university`
 -- Indizes für die Tabelle `universityLectures`
 --
 ALTER TABLE `universityLectures`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `uniID` (`uniID`),
+  ADD KEY `lectureID` (`lectureID`);
 
 --
 -- Indizes für die Tabelle `universityProducts`
 --
 ALTER TABLE `universityProducts`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `uniID` (`uniID`),
+  ADD KEY `productID` (`productID`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -276,6 +285,38 @@ ALTER TABLE `universityLectures`
 --
 ALTER TABLE `universityProducts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `lectureProducts`
+--
+ALTER TABLE `lectureProducts`
+  ADD CONSTRAINT `lectureProducts_ibfk_1` FOREIGN KEY (`lectureID`) REFERENCES `lecture` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lectureProducts_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE;
+
+--
+-- Constraints der Tabelle `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`) ON UPDATE CASCADE;
+
+--
+-- Constraints der Tabelle `universityLectures`
+--
+ALTER TABLE `universityLectures`
+  ADD CONSTRAINT `universityLectures_ibfk_1` FOREIGN KEY (`lectureID`) REFERENCES `lecture` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `universityLectures_ibfk_2` FOREIGN KEY (`uniID`) REFERENCES `university` (`ID`) ON UPDATE CASCADE;
+
+--
+-- Constraints der Tabelle `universityProducts`
+--
+ALTER TABLE `universityProducts`
+  ADD CONSTRAINT `universityProducts_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `universityProducts_ibfk_2` FOREIGN KEY (`uniID`) REFERENCES `university` (`ID`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
