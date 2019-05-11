@@ -8,7 +8,6 @@ function priceToString(price) {
         stringPrice.replace(".", ",");
         stringPrice += "0";
     }
-
     return stringPrice + "€";
 }
 
@@ -16,8 +15,9 @@ function displayTransactions(transactions) {
     let displayText = "Your Transactions:\n\n";
     let priceSum = 0;
     for(let index in transactions) {
+        console.log(transactions[index]);
         let currentTransaction = transactions[index];
-        priceSum += currentTransaction.price;
+        priceSum += parseInt(currentTransaction.price);
         displayText += priceToString(currentTransaction.price) + " " + currentTransaction.name + "\n";
     }
     displayText += "----\n"+ priceToString(priceSum);
@@ -31,7 +31,7 @@ function getStudentTransactions() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
-            console.log("response: " + response);
+            console.log("response transaction: " + response);
             if(response) {
                 console.log("Transactions fetched");
                 displayTransactions(JSON.parse(response));
