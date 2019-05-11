@@ -30,15 +30,12 @@ function createTransaction(item) {
 }
 
 function displayLecturesAndProducts(lecturesAndProducts) {
-  console.log("response bar: " + lecturesAndProducts);
   let lectureElement = "";
   let productElement = "";
   for(let key in lecturesAndProducts) {
-    console.log(lecturesAndProducts[key]);
       let id = lecturesAndProducts[key]["ID"];
       let name = lecturesAndProducts[key]["name"];
       let price = lecturesAndProducts[key]["price"];
-      console.log("id: " + id + " name: " + name );
       if(lecturesAndProducts[key]["type"] == "lecture") {
         lectureElement += "<li><a id='" + id + "' onClick='getProductsByLecture(this);'>" + name +"</a></li>";
       }
@@ -57,10 +54,7 @@ function getLecturesAndProducts() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
-            console.log("response foo: ", response);
-
             if(response) {
-                console.log("Lectures fetched");
                 displayLecturesAndProducts(JSON.parse(response));
             } else {
                 alert("Lecture Fetch Error");
@@ -70,7 +64,6 @@ function getLecturesAndProducts() {
     let url_string = window.location.href;
     let url = new URL(url_string);
     universityID = url.searchParams.get("id");
-    //console.log("ID: ", universityID);
     xmlhttp.open("POST", "scripts/getLecturesAndProductsFromUniversity.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + universityID);
@@ -85,7 +78,6 @@ function getProductsByLecture(item) {
             if(parsedProducts) {
                 let productsLectureList = document.getElementById("productsLectureList");
                 let productList = "";
-                console.log("Products by Lecture fetched");
                 for(let index in parsedProducts) {
                     let currentProduct = parsedProducts[index];
                     productList += "<li>"+currentProduct.name+" Price: "+priceToString(currentProduct.price) + " <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Buy Now</button></li>";
