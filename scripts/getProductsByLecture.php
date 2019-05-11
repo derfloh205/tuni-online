@@ -9,15 +9,24 @@
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
-        $product_id = "select productID from lectureProducts where lectureID = (". $lecture_id . ")";
-        $sql = "SELECT name,price FROM product WHERE id = (" . $product_id . ")";
-        $result = $conn->query($sql);
+        $product_query = "select productID from lectureProducts where lectureID = '$lecture_id'";
+        $product_id = $conn->query($product_query);
 
-        $DUMMY_TEMP_RETURN_REMOVE_ME = '[{"id":3, "name":"dummyProduct", "price":2.3}, {"id":4, "name":"dummyProduct2", "price":3.3}]';
-        echo $DUMMY_TEMP_RETURN_REMOVE_ME;
-        return true;
-        if ($result->num_rows > 0) { return true; }
-        else { return false; }
-    } 
-    else { return false; }
+        while($element = mysqli_fetch_assoc($product_id))
+        {
+          $elem = $element['productID'];
+          $sql = "SELECT name,price FROM product WHERE ID = '$elem'";
+          $result = $conn->query($sql);
+          while($row = mysqli_fetch_assoc($result)){
+            $jsonObject = (object)array();
+            $jsonObject->name = $row["name"];
+            $jsonObject->price = $row["price"];
+            json_encode($jsonObject);
+            $rows[] = $jsonObject;
+          }
+        }
+
+        echo json_encode($rows);
+
+    }
 ?>
