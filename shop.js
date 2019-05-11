@@ -71,7 +71,7 @@ function getLecturesAndProducts() {
     let url = new URL(url_string);
     universityID = url.searchParams.get("id");
     //console.log("ID: ", universityID);
-    xmlhttp.open("POST", "getLecturesAndProductsFromUniversity.php", true);
+    xmlhttp.open("POST", "scripts/getLecturesAndProductsFromUniversity.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + universityID);
 }

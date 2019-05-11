@@ -45,7 +45,7 @@ function getUniversities() {
             }
         }
     };
-    xmlhttp.open("GET", "getUniversities.php", true);
+    xmlhttp.open("GET", "scripts/getUniversities.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send();
 }
@@ -68,5 +68,3 @@ function clickOnUniversity(item) {
 function getStudentTransactions() {
     let studentID = getSession();
 }
-
-
