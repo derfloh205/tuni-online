@@ -46,7 +46,6 @@ function getLecturesAndProducts() {
 
             if(response) {
                 console.log("Lectures fetched");
-
                 extractLecturesAndProducts(JSON.parse(response));
             } else {
                 alert("Lecture Fetch Error");
@@ -57,8 +56,8 @@ function getLecturesAndProducts() {
     let url_string = window.location.href;
     let url = new URL(url_string);
     universityID = url.searchParams.get("id");
-    console.log("ID: ", universityID);
-    xmlhttp.open("GET", "getLecturesAndProductsFromUniversity.php", true);
+    //console.log("ID: ", universityID);
+    xmlhttp.open("POST", "getLecturesAndProductsFromUniversity.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + universityID);
 }
