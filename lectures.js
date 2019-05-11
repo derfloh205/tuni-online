@@ -113,6 +113,7 @@ function getProductsByLecture(item) {
                 }
                 productsLectureList.innerHTML = productList;
                 document.getElementById("productsLectureListContainer").style.display = "";
+                document.getElementById("lectureProductHeadline").innerText = "Products from " + item.innerText;
             } else {
                 alert("Products by Lecture  Fetch Error");
                 // show login error
