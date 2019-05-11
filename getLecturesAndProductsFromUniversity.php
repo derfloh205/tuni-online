@@ -1,15 +1,15 @@
 <?php
 
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbName = "tunidb"; 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbName = "tunidb";
 
 $db = mysqli_connect($servername, $username, $password, $dbName)
 or die('Error connecting to MySQL server.');
 
-$university = $_POST["TODO"];
-
+$university = $_POST["id"];
+echo $university;
 
 $query = "SELECT * FROM lecture";
 $lectures = mysqli_query($db, $query) or die('Error querying database 1.');
