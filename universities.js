@@ -35,7 +35,9 @@ function getUniversities() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
+            console.log("response: " + response);
             if(response) {
+                console.log("Universities fetched");
                 displayUniversities(JSON.parse(response));
             } else {
                 alert("University Fetch Error");
@@ -43,44 +45,24 @@ function getUniversities() {
             }
         }
     };
-    xmlhttp.open("GET", "getUniversities.php", true);
+    xmlhttp.open("GET", "scripts/getUniversities.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send();
-}
-
-function getLecturesAndProductsFromLectures() {
-  let xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        let response = this.response;
-        console.log("response: " + response);
-        if(response) {
-            console.log("Lectures and Products fetched");
-
-        } else {
-            alert("Lectures and Products Fetch Error");
-            // show login error
-        }
-      }
-      xmlhttp.open("GET", "getLecturesAndProductsFromLectures.php", true);
-      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xmlhttp.send();
-    }
-}
-
-function foo(id) {
-  console.log("foo: ", id);
 }
 
 function displayUniversities(universities) {
     let element = "";
     for(let key in universities) {
-        let id = universities[key]["id"];
+        let id = universities[key]["ID"];
         let name = universities[key]["name"];
-        //console.log(id + " " + name);
-        element += "<li onclick='foo(this)'>"+ " " + name +"</li>";
+        console.log(id + " " + name);
+        element += "<li><a id='" + id + "' onClick='clickOnUniversity(this);'>" +name +"</a></li>";
     }
         document.getElementById("universityList").innerHTML = element;
+}
+
+function clickOnUniversity(item) {
+ window.location.assign("lectures.html?id=" + item.id);
 }
 
 function getStudentTransactions() {

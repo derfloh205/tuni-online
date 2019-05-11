@@ -45,7 +45,7 @@ function login() {
             }
         }
     };
-    xmlhttp.open("POST", "login.php", true);
+    xmlhttp.open("POST", "scripts/login.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + studentID + "&pw=" + studentpw);
 }
@@ -73,8 +73,7 @@ function register() {
             }
         }
     };
-    xmlhttp.open("POST", "register.php", true);
+    xmlhttp.open("POST", "scripts/register.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + studentID + "&name=" + studentName + "&email=" + studentEmail + "&pw=" + studentPW);
 }
-

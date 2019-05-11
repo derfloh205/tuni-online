@@ -1,0 +1,14 @@
+
+
+#lecturesList {
+  font-size: 20px;
+  padding-bottom: 50px
+}
+
+#productsList {
+  font-size: 20px;
+}
+
+#productsLectureListContainer {
+  display: none;
+}

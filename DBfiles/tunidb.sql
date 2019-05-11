@@ -1,11 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Host: localhost
 -- Erstellungszeit: 11. Mai 2019 um 17:50
 -- Server-Version: 10.1.39-MariaDB
 -- PHP-Version: 7.3.5
+=======
+-- Host: 127.0.0.1
+-- Erstellungszeit: 11. Mai 2019 um 14:31
+-- Server-Version: 10.1.37-MariaDB
+-- PHP-Version: 5.6.39
+>>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -49,20 +56,20 @@ INSERT INTO `lecture` (`ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `lectureProducts`
+-- Tabellenstruktur für Tabelle `lectureproducts`
 --
 
-CREATE TABLE `lectureProducts` (
+CREATE TABLE `lectureproducts` (
   `ID` int(11) NOT NULL,
   `lectureID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `lectureProducts`
+-- Daten für Tabelle `lectureproducts`
 --
 
-INSERT INTO `lectureProducts` (`ID`, `lectureID`, `productID`) VALUES
+INSERT INTO `lectureproducts` (`ID`, `lectureID`, `productID`) VALUES
 (1, 5, 1),
 (2, 6, 2);
 
@@ -105,12 +112,17 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studentID`, `name`, `email`, `password`) VALUES
+<<<<<<< HEAD
 (45, 'test test', 'f@af.at', '123'),
+=======
+(1, '1', '1', '1'),
+>>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 (123, 'test user', 'test@user.at', '123'),
 (1311885, 'Tina Promitzer', 'tina@rotehaare.at', 'thisissafe'),
 (1330231, 'Anja Reibenbacher', 'anja@reibenbacher.at', 'pw123'),
 (1330656, 'Florian Paul Markus Dietrich', 'flo@gamer.at', '1234'),
 (1331106, 'Flexi Grass', 'flexi@flex.com', 'password'),
+(1345667, '1', '1', '1'),
 (1430534, 'Simon Guggi', 'test@test.com', 'test123');
 
 -- --------------------------------------------------------
@@ -152,33 +164,61 @@ INSERT INTO `university` (`ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `universityLectures`
+-- Tabellenstruktur für Tabelle `universitylectures`
 --
 
-CREATE TABLE `universityLectures` (
+CREATE TABLE `universitylectures` (
   `ID` int(11) NOT NULL,
   `uniID` int(11) NOT NULL,
   `lectureID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `universitylectures`
+--
+
+INSERT INTO `universitylectures` (`ID`, `uniID`, `lectureID`) VALUES
+(1, 3, 4),
+(2, 4, 4),
+(3, 1, 3),
+(4, 2, 3),
+(5, 4, 6),
+(6, 5, 1),
+(7, 6, 6),
+(8, 5, 2),
+(9, 6, 5),
+(10, 5, 7),
+(11, 1, 3),
+(12, 2, 7),
+(13, 4, 7),
+(14, 3, 3);
+
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `universityProducts`
+-- Tabellenstruktur für Tabelle `universityproducts`
 --
 
-CREATE TABLE `universityProducts` (
+CREATE TABLE `universityproducts` (
   `ID` int(11) NOT NULL,
   `uniID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `universityProducts`
+-- Daten für Tabelle `universityproducts`
 --
 
-INSERT INTO `universityProducts` (`ID`, `uniID`, `productID`) VALUES
-(1, 1, 1);
+INSERT INTO `universityproducts` (`ID`, `uniID`, `productID`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 2, 2),
+(4, 3, 1),
+(5, 5, 3),
+(6, 6, 2),
+(7, 4, 3),
+(8, 1, 2),
+(9, 3, 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -191,12 +231,17 @@ ALTER TABLE `lecture`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `lectureProducts`
+-- Indizes für die Tabelle `lectureproducts`
 --
+<<<<<<< HEAD
 ALTER TABLE `lectureProducts`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `lectureID` (`lectureID`),
   ADD KEY `productID` (`productID`);
+=======
+ALTER TABLE `lectureproducts`
+  ADD PRIMARY KEY (`ID`);
+>>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 --
 -- Indizes für die Tabelle `product`
@@ -225,20 +270,30 @@ ALTER TABLE `university`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `universityLectures`
+-- Indizes für die Tabelle `universitylectures`
 --
+<<<<<<< HEAD
 ALTER TABLE `universityLectures`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `uniID` (`uniID`),
   ADD KEY `lectureID` (`lectureID`);
+=======
+ALTER TABLE `universitylectures`
+  ADD PRIMARY KEY (`ID`);
+>>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 --
--- Indizes für die Tabelle `universityProducts`
+-- Indizes für die Tabelle `universityproducts`
 --
+<<<<<<< HEAD
 ALTER TABLE `universityProducts`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `uniID` (`uniID`),
   ADD KEY `productID` (`productID`);
+=======
+ALTER TABLE `universityproducts`
+  ADD PRIMARY KEY (`ID`);
+>>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -251,9 +306,9 @@ ALTER TABLE `lecture`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT für Tabelle `lectureProducts`
+-- AUTO_INCREMENT für Tabelle `lectureproducts`
 --
-ALTER TABLE `lectureProducts`
+ALTER TABLE `lectureproducts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -275,14 +330,15 @@ ALTER TABLE `university`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT für Tabelle `universityLectures`
+-- AUTO_INCREMENT für Tabelle `universitylectures`
 --
-ALTER TABLE `universityLectures`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `universitylectures`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT für Tabelle `universityProducts`
+-- AUTO_INCREMENT für Tabelle `universityproducts`
 --
+<<<<<<< HEAD
 ALTER TABLE `universityProducts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
@@ -317,6 +373,10 @@ ALTER TABLE `universityLectures`
 ALTER TABLE `universityProducts`
   ADD CONSTRAINT `universityProducts_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `universityProducts_ibfk_2` FOREIGN KEY (`uniID`) REFERENCES `university` (`ID`) ON UPDATE CASCADE;
+=======
+ALTER TABLE `universityproducts`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+>>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
