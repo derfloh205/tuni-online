@@ -2,17 +2,10 @@
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
-<<<<<<< HEAD
 -- Host: localhost
--- Erstellungszeit: 11. Mai 2019 um 17:50
--- Server-Version: 10.1.39-MariaDB
--- PHP-Version: 7.3.5
-=======
--- Host: 127.0.0.1
--- Erstellungszeit: 11. Mai 2019 um 14:31
+-- Erstellungszeit: 11. Mai 2019 um 19:20
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 5.6.39
->>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -112,11 +105,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studentID`, `name`, `email`, `password`) VALUES
-<<<<<<< HEAD
-(45, 'test test', 'f@af.at', '123'),
-=======
 (1, '1', '1', '1'),
->>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 (123, 'test user', 'test@user.at', '123'),
 (1311885, 'Tina Promitzer', 'tina@rotehaare.at', 'thisissafe'),
 (1330231, 'Anja Reibenbacher', 'anja@reibenbacher.at', 'pw123'),
@@ -188,7 +177,7 @@ INSERT INTO `universitylectures` (`ID`, `uniID`, `lectureID`) VALUES
 (8, 5, 2),
 (9, 6, 5),
 (10, 5, 7),
-(11, 1, 3),
+(11, 1, 4),
 (12, 2, 7),
 (13, 4, 7),
 (14, 3, 3);
@@ -233,15 +222,8 @@ ALTER TABLE `lecture`
 --
 -- Indizes für die Tabelle `lectureproducts`
 --
-<<<<<<< HEAD
-ALTER TABLE `lectureProducts`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `lectureID` (`lectureID`),
-  ADD KEY `productID` (`productID`);
-=======
 ALTER TABLE `lectureproducts`
   ADD PRIMARY KEY (`ID`);
->>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 --
 -- Indizes für die Tabelle `product`
@@ -259,9 +241,7 @@ ALTER TABLE `student`
 -- Indizes für die Tabelle `transactions`
 --
 ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `studentID` (`studentID`),
-  ADD KEY `productID` (`productID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indizes für die Tabelle `university`
@@ -272,28 +252,14 @@ ALTER TABLE `university`
 --
 -- Indizes für die Tabelle `universitylectures`
 --
-<<<<<<< HEAD
-ALTER TABLE `universityLectures`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `uniID` (`uniID`),
-  ADD KEY `lectureID` (`lectureID`);
-=======
 ALTER TABLE `universitylectures`
   ADD PRIMARY KEY (`ID`);
->>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 --
 -- Indizes für die Tabelle `universityproducts`
 --
-<<<<<<< HEAD
-ALTER TABLE `universityProducts`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `uniID` (`uniID`),
-  ADD KEY `productID` (`productID`);
-=======
 ALTER TABLE `universityproducts`
   ADD PRIMARY KEY (`ID`);
->>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -338,45 +304,8 @@ ALTER TABLE `universitylectures`
 --
 -- AUTO_INCREMENT für Tabelle `universityproducts`
 --
-<<<<<<< HEAD
-ALTER TABLE `universityProducts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints der exportierten Tabellen
---
-
---
--- Constraints der Tabelle `lectureProducts`
---
-ALTER TABLE `lectureProducts`
-  ADD CONSTRAINT `lectureProducts_ibfk_1` FOREIGN KEY (`lectureID`) REFERENCES `lecture` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `lectureProducts_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `transactions`
---
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`) ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `universityLectures`
---
-ALTER TABLE `universityLectures`
-  ADD CONSTRAINT `universityLectures_ibfk_1` FOREIGN KEY (`lectureID`) REFERENCES `lecture` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `universityLectures_ibfk_2` FOREIGN KEY (`uniID`) REFERENCES `university` (`ID`) ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `universityProducts`
---
-ALTER TABLE `universityProducts`
-  ADD CONSTRAINT `universityProducts_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `universityProducts_ibfk_2` FOREIGN KEY (`uniID`) REFERENCES `university` (`ID`) ON UPDATE CASCADE;
-=======
 ALTER TABLE `universityproducts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
->>>>>>> 75dd1e07ad1470895a7780f6395f4fedaab97d6b
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
