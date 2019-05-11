@@ -12,7 +12,6 @@ if (array_key_exists('id', $_POST)) {
 		$query_string = "select lectureID from universitylectures where uniID = '$university'";
 		$lectures = $conn->query($query_string) or die('Error connecting to MySQL server.');
 
-		$rows[] = "lectures";
 		while($element = mysqli_fetch_assoc($lectures))
 		{
 		    $elem = $element["lectureID"];

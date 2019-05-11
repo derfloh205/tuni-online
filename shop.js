@@ -30,10 +30,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function extractLecturesAndProducts(lecturesAndProducts) {
   console.log("response: " + lecturesAndProducts);
-  for(let key in lecturesAndProducts) {
-    //console.log(lecturesAndProducts[key]);
-
+  let lectureElement = "";
+  let productElement = "";
+  let i = 0;
+  for(i; i < lecturesAndProducts.length; i++) {
+    console.log(lecturesAndProducts[i]);
+    if(lecturesAndProducts[i] == "products") {
+      break;
+    }
+    lectureElement += "<li><a>" + lecturesAndProducts[i] +"</a></li>";
   }
+
+  i++;
+  for(i; i < lecturesAndProducts.length; i=i+2) {
+    console.log(lecturesAndProducts[i]);
+    productElement += "<li><a>" + lecturesAndProducts[i]  + ", price: " + lecturesAndProducts[i+1] +"</a></li>";
+  }
+  document.getElementById("lecturesList").innerHTML = lectureElement;
+  document.getElementById("productsList").innerHTML = productElement;
 }
 
 function getLecturesAndProducts() {
@@ -42,7 +56,7 @@ function getLecturesAndProducts() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
-            console.log("response: ", response);
+            //console.log("response: ", response);
 
             if(response) {
                 console.log("Lectures fetched");
