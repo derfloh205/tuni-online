@@ -25,24 +25,39 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         document.getElementById("loggedInAs").innerText = "Logged in with studentID: " + studentID.toString();
     }
-    getLectures();
+    getLecturesAndProducts();
 });
 
-function getLectures() {
+function extractLecturesAndProducts(lecturesAndProducts) {
+  console.log("response: " + lecturesAndProducts);
+  for(let key in lecturesAndProducts) {
+    //console.log(lecturesAndProducts[key]);
+
+  }
+}
+
+function getLecturesAndProducts() {
     let universityID = 0;
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
-            console.log("response: " + response);
-            if(response == 1) {
+            console.log("response: ", response);
+
+            if(response) {
                 console.log("Lectures fetched");
+
+                extractLecturesAndProducts(JSON.parse(response));
             } else {
                 alert("Lecture Fetch Error");
                 // show login error
             }
         }
     };
+    let url_string = window.location.href;
+    let url = new URL(url_string);
+    universityID = url.searchParams.get("id");
+    console.log("ID: ", universityID);
     xmlhttp.open("GET", "getLecturesAndProductsFromUniversity.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + universityID);

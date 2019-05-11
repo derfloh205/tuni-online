@@ -5,29 +5,30 @@ $username = "root";
 $password = "";
 $dbName = "tunidb";
 
-$db = mysqli_connect($servername, $username, $password, $dbName)
-or die('Error connecting to MySQL server.');
+$university = (isset($_POST['id']) ? $_POST['id'] : '');
 
-$university = $_POST["id"];
-echo $university;
+$conn = new mysqli($servername, $username, $password, $dbName);
 
-$query = "SELECT * FROM lecture";
-$lectures = mysqli_query($db, $query) or die('Error querying database 1.');
-$query = "SELECT * FROM universityproducts";
-$universityproducts = mysqli_query($db, $query) or die('Error querying database 1.');
+$query_string = "select lectureID from universitylectures where uniID = " . $university;
+$lectures = $conn->query($query_string) or die('Error connecting to MySQL server.');
 
-$rows = array();
-array_push($row, "lectures");
-while($element = mysql_fetch_assoc($lectures))
+$rows[] = "lectures";
+while($element = mysqli_fetch_assoc($lectures))
 {
-	$rows[] = $element;
+	$query_string = "select * from lecture where ID = " . $element;
+	$lecture_name = $conn->query($query_string) or die('Error connecting to MySQL server.');
+	$rows[] = $lecture_name;
 }
 
-array_push($row, "products");
+$product_query = "select productID from universityproducts where uniID = (". $university . ")"
+$products = $conn->query($product_query) or die('Error connecting to MySQL server.');
+$rows[] = "products";
 
-while($element = mysql_fetch_assoc($universityproducts))
+while($element = mysqli_fetch_assoc($products))
 {
-	$rows[] = $element;
+	$query_string = "select * from product where ID = " . $element;
+	$procuct = $conn->query($query_string);
+	$rows[] = $procuct;
 }
 
 echo json_encode($rows);
