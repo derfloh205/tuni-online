@@ -28,13 +28,16 @@ document.addEventListener("DOMContentLoaded", function() {
     getLecturesAndProducts();
 });
 
-function extractLecturesAndProducts(lecturesAndProducts) {
+function createTransaction(event) {
+  console.log("transaction: ", event);
+}
+
+function displayLecturesAndProducts(lecturesAndProducts) {
   console.log("response: " + lecturesAndProducts);
   let lectureElement = "";
   let productElement = "";
   let i = 0;
   for(i; i < lecturesAndProducts.length; i++) {
-    console.log(lecturesAndProducts[i]);
     if(lecturesAndProducts[i] == "products") {
       break;
     }
@@ -43,8 +46,7 @@ function extractLecturesAndProducts(lecturesAndProducts) {
 
   i++;
   for(i; i < lecturesAndProducts.length; i=i+2) {
-    console.log(lecturesAndProducts[i]);
-    productElement += "<li><a>" + lecturesAndProducts[i]  + ", price: " + lecturesAndProducts[i+1] +"</a></li>";
+    productElement += "<li><a id='" + lecturesAndProducts[i] + "' onClick='createTransaction(this);'>" + lecturesAndProducts[i]  + ", price: " + lecturesAndProducts[i+1] +  "</a></li>";
   }
   document.getElementById("lecturesList").innerHTML = lectureElement;
   document.getElementById("productsList").innerHTML = productElement;
@@ -60,7 +62,7 @@ function getLecturesAndProducts() {
 
             if(response) {
                 console.log("Lectures fetched");
-                extractLecturesAndProducts(JSON.parse(response));
+                displayLecturesAndProducts(JSON.parse(response));
             } else {
                 alert("Lecture Fetch Error");
                 // show login error
