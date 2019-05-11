@@ -28,8 +28,25 @@ document.addEventListener("DOMContentLoaded", function() {
     getLecturesAndProducts();
 });
 
-function createTransaction(event) {
-  console.log("transaction: ", event);
+function createTransaction(item) {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let response = this.response;
+            console.log("response: ", response);
+
+            if(response) {
+                console.log("Created Transaction");
+            } else {
+                alert("Create Transaction Error");
+                // show login error
+            }
+        }
+    };
+
+    xmlhttp.open("POST", "scripts/createTransaction.php", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send("studentID=" + getSession() + "?productID=" + item.id);
 }
 
 function displayLecturesAndProducts(lecturesAndProducts) {
@@ -92,7 +109,7 @@ function getProductsByLecture(item) {
                 console.log("Products by Lecture fetched");
                 for(let index in parsedProducts) {
                     let currentProduct = parsedProducts[index];
-                    productList += "<li>"+currentProduct.name+" Price: "+currentProduct.price+"€</li>";
+                    productList += "<li>"+currentProduct.name+" Price: "+currentProduct.price+"€ <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Jetzt kaufen</button></li>";
                 }
                 productsLectureList.innerHTML = productList;
                 document.getElementById("productsLectureListContainer").style.display = "";

@@ -1,7 +1,7 @@
 <?php
-    if (array_key_exists('studentid', $_POST) && array_key_exists('productid', $_POST)) {
-        $student_id = $_POST['studentid'];
-        $product_id = $_POST['productid'];
+    if (array_key_exists('studentID', $_POST) && array_key_exists('productID', $_POST)) {
+        $student_id = $_POST['studentID'];
+        $product_id = $_POST['productID'];
 
         $servername = "localhost";
         $username = "root";
@@ -12,9 +12,8 @@
         $conn = new mysqli($servername, $username, $password, $db);
         $sql = "insert into transactions (studentID, productID, date) values ('$student_id', '$product_id', now())";
         $result = mysqli_query($conn, $sql);
-        echo $conn->query($sql)
+        echo $conn->query($sql);
+        $conn->close();
     } 
     else {echo false; }
-
-    $conn->close();
 ?>
