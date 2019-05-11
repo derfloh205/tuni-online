@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-
-});
-
 function priceToString(price) {
     let stringPrice = price.toString();
 
