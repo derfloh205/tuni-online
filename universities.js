@@ -52,10 +52,10 @@ function getUniversities() {
 
 function displayUniversities(universities) {
     let element = "";
+    console.log(universities);
     for(let key in universities) {
         let id = universities[key]["ID"];
         let name = universities[key]["name"];
-        console.log(id + " " + name);
         element += "<li><a id='" + id + "' onClick='clickOnUniversity(this);'>" +name +"</a></li>";
     }
         document.getElementById("universityList").innerHTML = element;

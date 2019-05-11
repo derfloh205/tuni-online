@@ -33,20 +33,22 @@ function createTransaction(event) {
 }
 
 function displayLecturesAndProducts(lecturesAndProducts) {
-  console.log("response: " + lecturesAndProducts);
+  console.log("response bar: " + lecturesAndProducts);
   let lectureElement = "";
   let productElement = "";
-  let i = 0;
-  for(i; i < lecturesAndProducts.length; i++) {
-    if(lecturesAndProducts[i] == "products") {
-      break;
-    }
-    lectureElement += "<li><a>" + lecturesAndProducts[i] +"</a></li>";
-  }
+  for(let key in lecturesAndProducts) {
+    console.log(lecturesAndProducts[key]);
+      let id = lecturesAndProducts[key]["ID"];
+      let name = lecturesAndProducts[key]["name"];
+      let price = lecturesAndProducts[key]["price"];
+      console.log("id: " + id + " name: " + name );
+      if(lecturesAndProducts[key]["type"] == "lecture") {
+        lectureElement += "<li><a id='" + id + "' onClick='getProductsByLecture(this);'>" + name +"</a></li>";
+      }
+      else if(lecturesAndProducts[key]["type"] == "product") {
+        productElement += "<li><a id='" + id + "' onClick='createTransaction(this);'>" + name  + ", price: " + price +  "</a></li>";
 
-  i++;
-  for(i; i < lecturesAndProducts.length; i=i+2) {
-    productElement += "<li><a id='" + lecturesAndProducts[i] + "' onClick='createTransaction(this);'>" + lecturesAndProducts[i]  + ", price: " + lecturesAndProducts[i+1] +  "</a></li>";
+      }
   }
   document.getElementById("lecturesList").innerHTML = lectureElement;
   document.getElementById("productsList").innerHTML = productElement;
@@ -58,7 +60,7 @@ function getLecturesAndProducts() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
-            //console.log("response: ", response);
+            console.log("response foo: ", response);
 
             if(response) {
                 console.log("Lectures fetched");
@@ -76,4 +78,24 @@ function getLecturesAndProducts() {
     xmlhttp.open("POST", "scripts/getLecturesAndProductsFromUniversity.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("id=" + universityID);
+}
+
+function getProductsByLecture(event) {
+    console.log(event);
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let response = this.response;
+            console.log("response: " + response);
+            if(response) {
+                console.log("Products by Lecture fetched");
+            } else {
+                alert("Products by Lecture  Fetch Error");
+                // show login error
+            }
+        }
+    };
+    xmlhttp.open("GET", "scripts/getProductsByLectureName.php", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send();
 }
