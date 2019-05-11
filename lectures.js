@@ -94,7 +94,7 @@ function getProductsByLecture(item) {
             }
         }
     };
-    xmlhttp.open("POST", "scripts/getProductsByLectureName.php", true);
+    xmlhttp.open("POST", "scripts/getProductsByLecture.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("lectureID=" + item.id);
 }
