@@ -38,12 +38,13 @@ if (array_key_exists('id', $_POST)) {
 			$product = $conn->query($query_string) or die('Error connecting to MySQL server.');
 
             while($row = mysqli_fetch_assoc($product)){
-              $jsonObject->type = "product";
-              $jsonObject->ID = $row["ID"];
-              $jsonObject->name = $row["name"];
-              $jsonObject->price = $row["price"];
-              json_encode($jsonObject);
-              $rows[] = $jsonObject;
+              $jsonObj = (object)array();
+              $jsonObj->type = "product";
+              $jsonObj->ID = $row["ID"];
+              $jsonObj->name = $row["name"];
+              $jsonObj->price = $row["price"];
+              json_encode($jsonObj);
+              $rows[] = $jsonObj;
             }
 		}
 		echo json_encode($rows);
