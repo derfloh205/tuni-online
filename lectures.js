@@ -84,10 +84,12 @@ function getProductsByLecture(item) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            let response = this.response;
-            console.log("response: " + response);
-            if(response) {
+            let parsedProducts = JSON.parse(this.response);
+            if(parsedProducts) {
                 console.log("Products by Lecture fetched");
+                for(let index in parsedProducts) {
+                    console.log("product: " + parsedProducts[index].name);
+                }
             } else {
                 alert("Products by Lecture  Fetch Error");
                 // show login error
