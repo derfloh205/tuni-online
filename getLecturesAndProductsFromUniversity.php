@@ -18,7 +18,10 @@ if (array_key_exists('id', $_POST)) {
 		    $elem = $element["lectureID"];
 			$query_string = "select * from lecture where ID = '$elem'";
 			$lecture_name = $conn->query($query_string) or die('Error connecting to MySQL server.');
-			$rows[] = $lecture_name;
+			while($row = mysqli_fetch_assoc($lecture_name)){
+                  $stringTest = $row["name"];
+                  $rows[] = $stringTest;
+            }
 		}
 
 		$product_query = "select productID from universityproducts where uniID = '$university'";
@@ -29,8 +32,14 @@ if (array_key_exists('id', $_POST)) {
 		{
 		    $elem = $element["productID"];
 			$query_string = "select * from product where ID = '$elem'";
-			$procuct = $conn->query($query_string);
-			$rows[] = $procuct;
+			$product = $conn->query($query_string) or die('Error connecting to MySQL server.');
+
+            while($row = mysqli_fetch_assoc($product)){
+                  $stringTest = $row["name"];
+                  $rows[] = $stringTest;
+                  $stringTest = $row["price"];
+                  $rows[] = $stringTest;
+            }
 		}
 
 
