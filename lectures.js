@@ -63,7 +63,7 @@ function displayLecturesAndProducts(lecturesAndProducts) {
         lectureElement += "<li><a id='" + id + "' onClick='getProductsByLecture(this);'>" + name +"</a></li>";
       }
       else if(lecturesAndProducts[key]["type"] == "product") {
-        productElement += "<li><a id='" + id + "' onClick='createTransaction(this);'>" + name  + ", price: " + price +  "</a></li>";
+        productElement += "<li><a id='" + id + "' onClick='createTransaction(this);'>" + name  + ", price: " + price +  "€</a></li>";
 
       }
   }
@@ -109,7 +109,7 @@ function getProductsByLecture(item) {
                 console.log("Products by Lecture fetched");
                 for(let index in parsedProducts) {
                     let currentProduct = parsedProducts[index];
-                    productList += "<li>"+currentProduct.name+" Price: "+currentProduct.price+"€ <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Jetzt kaufen</button></li>";
+                    productList += "<li>"+currentProduct.name+" Price: "+currentProduct.price+"€ <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Buy Now</button></li>";
                 }
                 productsLectureList.innerHTML = productList;
                 document.getElementById("productsLectureListContainer").style.display = "";
