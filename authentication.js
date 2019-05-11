@@ -10,19 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
     clearCookie("studentID");
 });
 
-function setCookie(cname, cvalue) {
-    document.cookie = cname + "=" + cvalue + ";";
-}
-
-function clearCookie(cname) {
-    let cvalue = "";
-    document.cookie = cname + "=" + cvalue + ";";
-}
-
-function saveSession(studentID) {
-    setCookie("studentID", studentID.toString(), 0);
-}
-
 function login() {
     // get student-id and pw from form
     let studentID = document.getElementById("studentNumber").value;

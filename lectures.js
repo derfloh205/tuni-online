@@ -1,22 +1,3 @@
-function getSession() {
-    return parseInt(getCookie("studentID"));
-}
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     let studentID = getSession();
     if(!studentID) {
@@ -39,7 +20,6 @@ function createTransaction(item) {
                 console.log("Created Transaction");
             } else {
                 alert("Create Transaction Error");
-                // show login error
             }
         }
     };
@@ -63,7 +43,7 @@ function displayLecturesAndProducts(lecturesAndProducts) {
         lectureElement += "<li><a id='" + id + "' onClick='getProductsByLecture(this);'>" + name +"</a></li>";
       }
       else if(lecturesAndProducts[key]["type"] == "product") {
-        productElement += "<li><a id='" + id + "' onClick='createTransaction(this);'>" + name  + ", price: " + price +  "€</a></li>";
+        productElement += "<li><a id='" + id + "' onClick='createTransaction(this);'>" + name  + ", price: " + priceToString(price) + "</a></li>";
 
       }
   }
@@ -84,7 +64,6 @@ function getLecturesAndProducts() {
                 displayLecturesAndProducts(JSON.parse(response));
             } else {
                 alert("Lecture Fetch Error");
-                // show login error
             }
         }
     };
@@ -109,7 +88,7 @@ function getProductsByLecture(item) {
                 console.log("Products by Lecture fetched");
                 for(let index in parsedProducts) {
                     let currentProduct = parsedProducts[index];
-                    productList += "<li>"+currentProduct.name+" Price: "+currentProduct.price+"€ <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Buy Now</button></li>";
+                    productList += "<li>"+currentProduct.name+" Price: "+priceToString(currentProduct.price) + " <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Buy Now</button></li>";
                 }
                 productsLectureList.innerHTML = productList;
                 document.getElementById("productsLectureListContainer").style.display = "";
