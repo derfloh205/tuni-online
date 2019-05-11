@@ -1,6 +1,6 @@
 <?php
-    if (array_key_exists('lecture', $_POST)) {
-        $lecture = $_POST['lecture'];
+    if (array_key_exists('lectureID', $_POST)) {
+        $lecture_id = $_POST['lectureID'];
 
         $servername = "localhost";
         $username = "root";
@@ -9,7 +9,6 @@
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
-        $lecture_id = "select id from lectures where name = " . $lecture;
         $product_id = "select productID from lectureProducts where lectureID = (". $lecture_id . ")";
         $sql = "SELECT name,price FROM product WHERE id = (" . $product_id . ")";
         $result = $conn->query($sql);
