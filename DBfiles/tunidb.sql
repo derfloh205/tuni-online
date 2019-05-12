@@ -2,8 +2,8 @@
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Erstellungszeit: 11. Mai 2019 um 19:20
+-- Host: 127.0.0.1
+-- Erstellungszeit: 12. Mai 2019 um 16:22
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 5.6.39
 
@@ -64,7 +64,13 @@ CREATE TABLE `lectureproducts` (
 
 INSERT INTO `lectureproducts` (`ID`, `lectureID`, `productID`) VALUES
 (1, 5, 1),
-(2, 6, 2);
+(2, 6, 2),
+(3, 1, 1),
+(4, 2, 1),
+(5, 3, 1),
+(6, 4, 2),
+(7, 7, 1),
+(8, 7, 3);
 
 -- --------------------------------------------------------
 
@@ -126,6 +132,27 @@ CREATE TABLE `transactions` (
   `productID` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `transactions`
+--
+
+INSERT INTO `transactions` (`ID`, `studentID`, `productID`, `date`) VALUES
+(1, 1, 0, '2019-05-12'),
+(2, 1, 0, '2019-05-12'),
+(3, 1, 0, '2019-05-12'),
+(4, 1, 0, '2019-05-12'),
+(5, 1, 0, '2019-05-12'),
+(6, 1, 0, '2019-05-12'),
+(7, 123, 0, '2019-05-12'),
+(8, 123, 0, '2019-05-12'),
+(9, 123, 0, '2019-05-12'),
+(10, 123, 2, '2019-05-12'),
+(11, 123, 1, '2019-05-12'),
+(12, 123, 2, '2019-05-12'),
+(13, 123, 1, '2019-05-12'),
+(14, 123, 2, '2019-05-12'),
+(15, 123, 0, '2019-05-12');
 
 -- --------------------------------------------------------
 
@@ -275,7 +302,7 @@ ALTER TABLE `lecture`
 -- AUTO_INCREMENT für Tabelle `lectureproducts`
 --
 ALTER TABLE `lectureproducts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `product`
@@ -287,7 +314,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT für Tabelle `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT für Tabelle `university`
