@@ -13,6 +13,14 @@ if (array_key_exists('studentID', $_POST)) {
 	$query_string = "select productID from transactions where studentID = '$student_id'";
 	$product_ids = $conn->query($query_string) or die('Error connecting to MySQL server.');
 
+	$row_cnt = $product_ids->num_rows;
+	if($row_cnt == 0)
+	{
+	    echo false;
+	}
+	else
+	{
+
   while($element = mysqli_fetch_assoc($product_ids))
   {
     $elem = $element["productID"];
@@ -28,6 +36,7 @@ if (array_key_exists('studentID', $_POST)) {
 
   }
   echo json_encode($rows);
+  }
 }
 
 ?>
