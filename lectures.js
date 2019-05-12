@@ -41,8 +41,7 @@ function displayLecturesAndProducts(lecturesAndProducts) {
         lectureElement += "<li><a id='" + id + "' onClick='getProductsByLecture(this);'>" + name +"</a></li>";
       }
       else if(lecturesAndProducts[key]["type"] == "product") {
-        productElement += "<li><a id='" + id + "' onClick='createTransaction(this);'>" + name  + ", price: " + priceToString(price) + "</a></li>";
-
+          productElement += "<li>"+ name  + ", price: " + priceToString(price) + "</a><button id='" + id + "' onclick='createTransaction(this)'>Buy Now</button></li>";
       }
   }
   document.getElementById("lecturesList").innerHTML = lectureElement;
