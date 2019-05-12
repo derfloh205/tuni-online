@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Mai 2019 um 16:22
+-- Erstellungszeit: 12. Mai 2019 um 17:29
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 5.6.39
 
@@ -44,7 +44,9 @@ INSERT INTO `lecture` (`ID`, `name`) VALUES
 (4, 'Web Technology'),
 (5, 'Analysis'),
 (6, 'Operating Systems'),
-(7, 'Software Paradigms');
+(7, 'Software Paradigms'),
+(8, 'BWL'),
+(9, 'Rechtswissenschaften');
 
 -- --------------------------------------------------------
 
@@ -63,14 +65,20 @@ CREATE TABLE `lectureproducts` (
 --
 
 INSERT INTO `lectureproducts` (`ID`, `lectureID`, `productID`) VALUES
-(1, 5, 1),
-(2, 6, 2),
-(3, 1, 1),
-(4, 2, 1),
-(5, 3, 1),
-(6, 4, 2),
-(7, 7, 1),
-(8, 7, 3);
+(1, 1, 10),
+(2, 2, 8),
+(3, 3, 8),
+(4, 4, 9),
+(5, 4, 8),
+(6, 5, 1),
+(7, 5, 10),
+(8, 6, 2),
+(9, 6, 8),
+(10, 7, 10),
+(11, 7, 8),
+(12, 8, 10),
+(13, 9, 8),
+(14, 9, 10);
 
 -- --------------------------------------------------------
 
@@ -91,7 +99,14 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`ID`, `name`, `price`) VALUES
 (1, 'Analysis notes', '10'),
 (2, 'Operating systems solutions', '50'),
-(3, 'Zbook 15', '800');
+(3, 'Zbook 15', '800'),
+(4, 'Lenovo Thinkpad', '900'),
+(5, 'surface Go', '500'),
+(6, 'HP ProBook', '300'),
+(7, 'Apple MacBook', '1100'),
+(8, 'Lecture Notes', '20'),
+(9, 'Web Technology Notes', '20'),
+(10, 'Lecture script', '10');
 
 -- --------------------------------------------------------
 
@@ -111,7 +126,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studentID`, `name`, `email`, `password`) VALUES
-(1, '1', '1', '1'),
+(1, 'test', 'test@test', '1'),
 (123, 'test user', 'test@user.at', '123'),
 (1311885, 'Tina Promitzer', 'tina@rotehaare.at', 'thisissafe'),
 (1330231, 'Anja Reibenbacher', 'anja@reibenbacher.at', 'pw123'),
@@ -132,27 +147,6 @@ CREATE TABLE `transactions` (
   `productID` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `transactions`
---
-
-INSERT INTO `transactions` (`ID`, `studentID`, `productID`, `date`) VALUES
-(1, 1, 0, '2019-05-12'),
-(2, 1, 0, '2019-05-12'),
-(3, 1, 0, '2019-05-12'),
-(4, 1, 0, '2019-05-12'),
-(5, 1, 0, '2019-05-12'),
-(6, 1, 0, '2019-05-12'),
-(7, 123, 0, '2019-05-12'),
-(8, 123, 0, '2019-05-12'),
-(9, 123, 0, '2019-05-12'),
-(10, 123, 2, '2019-05-12'),
-(11, 123, 1, '2019-05-12'),
-(12, 123, 2, '2019-05-12'),
-(13, 123, 1, '2019-05-12'),
-(14, 123, 2, '2019-05-12'),
-(15, 123, 0, '2019-05-12');
 
 -- --------------------------------------------------------
 
@@ -194,7 +188,7 @@ CREATE TABLE `universitylectures` (
 --
 
 INSERT INTO `universitylectures` (`ID`, `uniID`, `lectureID`) VALUES
-(1, 3, 4),
+(1, 3, 8),
 (2, 4, 4),
 (3, 1, 3),
 (4, 2, 3),
@@ -207,7 +201,7 @@ INSERT INTO `universitylectures` (`ID`, `uniID`, `lectureID`) VALUES
 (11, 1, 4),
 (12, 2, 7),
 (13, 4, 7),
-(14, 3, 3);
+(14, 3, 9);
 
 -- --------------------------------------------------------
 
@@ -226,15 +220,15 @@ CREATE TABLE `universityproducts` (
 --
 
 INSERT INTO `universityproducts` (`ID`, `uniID`, `productID`) VALUES
-(1, 1, 1),
-(2, 2, 2),
+(1, 1, 6),
+(2, 2, 7),
 (3, 2, 2),
-(4, 3, 1),
+(4, 3, 5),
 (5, 5, 3),
-(6, 6, 2),
+(6, 6, 4),
 (7, 4, 3),
-(8, 1, 2),
-(9, 3, 1);
+(8, 1, 5),
+(9, 3, 6);
 
 --
 -- Indizes der exportierten Tabellen
@@ -296,25 +290,25 @@ ALTER TABLE `universityproducts`
 -- AUTO_INCREMENT für Tabelle `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT für Tabelle `lectureproducts`
 --
 ALTER TABLE `lectureproducts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT für Tabelle `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT für Tabelle `university`
