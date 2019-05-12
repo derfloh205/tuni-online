@@ -15,10 +15,11 @@
         while($element = mysqli_fetch_assoc($product_id))
         {
           $elem = $element['productID'];
-          $sql = "SELECT name,price FROM product WHERE ID = '$elem'";
+          $sql = "SELECT * FROM product WHERE ID = '$elem'";
           $result = $conn->query($sql);
           while($row = mysqli_fetch_assoc($result)){
             $jsonObject = (object)array();
+            $jsonObject->ID = $row["ID"];
             $jsonObject->name = $row["name"];
             $jsonObject->price = $row["price"];
             json_encode($jsonObject);

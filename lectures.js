@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function createTransaction(item) {
     let xmlhttp = new XMLHttpRequest();
+    console.log("item id: "+item.id);
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.response;
@@ -80,7 +81,7 @@ function getProductsByLecture(item) {
                 let productList = "";
                 for(let index in parsedProducts) {
                     let currentProduct = parsedProducts[index];
-                    productList += "<li>"+currentProduct.name+" Price: "+priceToString(currentProduct.price) + " <button id='"+currentProduct.id+"' onclick='createTransaction(this)'>Buy Now</button></li>";
+                    productList += "<li>"+currentProduct.name+" Price: "+priceToString(currentProduct.price) + " <button id='"+currentProduct.ID+"' onclick='createTransaction(this)'>Buy Now</button></li>";
                 }
                 productsLectureList.innerHTML = productList;
                 document.getElementById("productsLectureListContainer").style.display = "";
