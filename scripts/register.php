@@ -11,7 +11,7 @@ or die('Error connecting to MySQL server.');
 $matrNumber = $_POST["id"];
 $name = $_POST["name"];
 $email = $_POST["email"];
-$password = $_POST["pw"];
+$password = hash("sha256", $_POST["pw"]);
 
 
 if($matrNumber && $name && $email && $password)

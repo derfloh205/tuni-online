@@ -1,7 +1,7 @@
 <?php
     if (array_key_exists('id', $_POST) && array_key_exists('pw', $_POST)) {
         $id = $_POST['id'];
-        $pw = ($_POST['pw']);
+        $pw = hash("sha256", $_POST['pw']);
 
         $servername = "localhost";
         $username = "root";
