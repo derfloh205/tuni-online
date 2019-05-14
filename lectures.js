@@ -19,6 +19,7 @@ function createTransaction(item) {
 
             if(response) {
                 console.log("Created Transaction");
+                alert("Item bought successfully!");
             } else {
                 alert("Create Transaction Error");
             }
