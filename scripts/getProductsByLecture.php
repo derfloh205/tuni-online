@@ -9,8 +9,10 @@
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
-        $product_query = "select productID from lectureProducts where lectureID = '$lecture_id'";
+        $product_query = "select productID from lectureproducts where lectureID = '$lecture_id'";
         $product_id = $conn->query($product_query);
+        //echo $product_query;
+        //return;
 
         while($element = mysqli_fetch_assoc($product_id))
         {
