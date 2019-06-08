@@ -122,22 +122,6 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `student`
---
-
-INSERT INTO `student` (`studentID`, `name`, `email`, `password`) VALUES
-(1, 'test', 'test@test', '1'),
-(123, 'test user', 'test@user.at', '123'),
-(1311885, 'Tina Promitzer', 'tina@rotehaare.at', 'thisissafe'),
-(1330231, 'Anja Reibenbacher', 'anja@reibenbacher.at', 'pw123'),
-(1330656, 'Florian Paul Markus Dietrich', 'flo@gamer.at', '1234'),
-(1331106, 'Flexi Grass', 'flexi@flex.com', 'password'),
-(1345667, '1', '1', '1'),
-(1430534, 'Simon Guggi', 'test@test.com', 'test123');
-
--- --------------------------------------------------------
-
---
 -- Tabellenstruktur für Tabelle `transactions`
 --
 
